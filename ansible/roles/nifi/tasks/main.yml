@@ -1,0 +1,13 @@
+---
+- name: Run the apache-nifi image
+  docker_container:
+    name: nifi
+    image: aldrin/apache-nifi
+    tty: yes
+    restart_policy: no
+    hostname: "{{ inventory_hostname }}"
+    ports:
+      - "8080:80"
+    env:
+      DISABLE_SSL: "true"
+

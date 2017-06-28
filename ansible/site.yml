@@ -1,0 +1,9 @@
+---
+- name: Set up operation server
+  hosts: operation
+  gather_facts: no
+  remote_user: root
+  roles:
+    - git
+    - tools
+
