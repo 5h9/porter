@@ -6,4 +6,6 @@
   - tree
   - dstat
   - bc
+  when: "ansible_distribution == 'Ubuntu'"
+
 

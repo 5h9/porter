@@ -1,0 +1,28 @@
+---
+- name: Install packages to allow apt to use a repositry over HTTPS
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - software-properties-common
+
+- name: Add docker's official GPG key
+  apt_key: url=https://download.docker.com/linux/ubuntu/gpg state=present
+
+- name: Add source repository
+  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable'
+
+- name: Update the apt package index
+  apt: update-cache=yes
+
+- name: Install the latest version of Docker
+  apt: name="docker-ce" state=present
+  
+- name: Lock docker-engine version
+  shell: apt-mark hold docker-ce
+  ignore_errors: yes
+
+- name: Install pip
+  apt: name=python-pip
+  

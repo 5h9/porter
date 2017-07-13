@@ -1,18 +1,10 @@
 ---
-- name: install requirement of latest git
-  apt:
-    name: python-software-properties
+- include: setup-AWS.yml
+  when: "ansible_distribution == 'Amazon'"
 
-- name: add git into apt repo
-  apt_repository:
-    repo: "ppa:git-core/ppa"
-    state: present
+- include: setup-Ubuntu.yml
+  when: "ansible_distribution == 'Ubuntu'"
 
-- name: install latest git
-  apt:
-    name: git
-    update_cache: yes
-    state: latest
 
 - name: config user name of git
   git_config:

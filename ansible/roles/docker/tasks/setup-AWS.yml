@@ -1,0 +1,12 @@
+---
+- name: Update the installed packages and package cache
+  yum: name="*" state=latest update_cache=yes
+
+- name: Install the latest version of Docker
+  yum: name="docker" state=present
+
+- name: Start the Docker service
+  service: name=docker state=started
+
+- name: Add the ec2-user to the docker group
+  user: name=ec2-user groups=docker append=yes
