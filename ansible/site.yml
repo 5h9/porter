@@ -1,9 +1,10 @@
 ---
 - name: Set up operation server
   hosts: operation
-  gather_facts: no
+  gather_facts: yes
   remote_user: root
   roles:
     - git
+    - docker
     - tools
 
