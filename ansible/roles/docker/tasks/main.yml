@@ -26,5 +26,8 @@
 - name: Install pip
   apt: name=python-pip
 
-- name: Install docker-py to control docker from ansible
-  pip: name=docker-py
+- name: Install docker library for python to control docker from ansible
+  pip: name=docker
+
+- name: Install docker-compose
+  pip: name=docker-compose
